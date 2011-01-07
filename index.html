@@ -10,9 +10,11 @@
     <body>
         <script type="text/javascript">
     display("/news?src=dn&sec=top","top_news");
-    //display("/stockholm","stockholm_news");
+    display("/news?src=dn&sec=stockholm","stockholm_news");
+    display("/news?src=dn&sec=economy","economy_news");
+    display("/news?src=dn&sec=sport","sport_news");
         
-    function display(url, divId){
+    function display(url, divId, title){
     //using jQuery ajax request
     $.ajax({
         type: "GET",
@@ -23,7 +25,7 @@
             //Now I want to get a value of the second node
             //alert(json.channel[0].title[0].Text);
             
-            var html = '<p>Daily News Robot</p>';
+            var html = ''+$('#'+divId+'').html();
             
             for(var i = 0;i<json.channel[0].item.length;i++){
                 var title = json.channel[0].item[i].title[0].Text;
@@ -31,9 +33,11 @@
                 var description = json.channel[0].item[i].description[0].Text;
                 var pubDate = json.channel[0].item[i].pubDate[0].Text;
                 
+                html = html.concat('<div class="news_element">');
                 html = html.concat('<p><a href="'+link+'" target="_blank">'+title+'</a></p>');
                 html = html.concat('<ul><li>'+pubDate+'</li>');
                 html = html.concat('<li>'+description+'</li></ul>');
+                html = html.concat('</div>');
             }
  
             $('#'+divId+'').html(html);
@@ -41,13 +45,18 @@
     });
     }
     
-      </script> 
-      
-        <div id="top_news" class="container"> 
-          
-        </div>
-        <div id="stockholm_news" class="container"> 
-        </div> 
+      </script>
+      <h1>Daily News Robot</h1>
+      <table id="news">
+        <tr>
+            <td><div id="top_news" class="container"><div class="section_title">Top news</div></div></td>
+            <td><div id="stockholm_news" class="container"> <div class="section_title">Stockholm news</div></div> </td>
+            <td><div id="economy_news" class="container"><div class="section_title">Economy news</div> </div> </td>
+            <td><div id="sport_news" class="container"> <div class="section_title">Sport news</div></div> </td>
+        </tr>
+      </table>
+        
+        
     
 
     <!--{% for greeting in greetings %}

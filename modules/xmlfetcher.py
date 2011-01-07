@@ -36,7 +36,8 @@ class XmlFetcher:
     def __download(self,key):
         map = { 'dn_top': "http://www.dn.se/m/rss/senaste-nytt",
                 'dn_stockholm': "http://www.dn.se/sthlm/m/rss/senaste-nytt",
-        
+                'dn_economy': "http://www.dn.se/ekonomi/m/rss/senaste-nytt",
+                'dn_sport': "http://www.dn.se/sport/m/rss/senaste-nytt",
                 }
         
         url = map[key]
