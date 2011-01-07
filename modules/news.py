@@ -9,9 +9,13 @@ from google.appengine.ext.webapp import template
 
 from xmlfetcher import XmlFetcher
 
-class TopNewsHandler(webapp.RequestHandler):
+class NewsHandler(webapp.RequestHandler):
     def get(self):
-        fetcher = XmlFetcher("dn","top")
+        src = self.request.get('src')
+        section = self.request.get('sec')
+        
+        
+        fetcher = XmlFetcher(src,section)
         xml = fetcher.get()
         self.response.headers['Content-Type'] = 'text/xml'
         self.response.out.write(xml)
