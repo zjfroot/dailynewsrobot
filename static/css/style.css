@@ -67,3 +67,8 @@ table#list td {
     border-bottom: 1px dashed #CFD2E8;
     background-color: #E9EAF5;
 }
+
+.container{
+    position:relative;
+    width:25%;
+}

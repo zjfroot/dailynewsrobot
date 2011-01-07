@@ -8,19 +8,22 @@
 		<script type="text/javascript" src="js/jqXMLUtils.js"></script>
     </head>
     <body>
-        <script type="text/javascript"> 
-    
+        <script type="text/javascript">
+    display("/news?src=dn&sec=top","top_news");
+    //display("/stockholm","stockholm_news");
+        
+    function display(url, divId){
     //using jQuery ajax request
     $.ajax({
         type: "GET",
-        url: "top", 
+        url: url, 
         dataType: "xml", //Make sure that you specify the type of file you expecting (XML)
         complete: function(data) {
             var json = $.xmlToJSON(data.responseXML);
             //Now I want to get a value of the second node
             //alert(json.channel[0].title[0].Text);
             
-            var html = '<p>News from DN</p>';
+            var html = '<p>Daily News Robot</p>';
             
             for(var i = 0;i<json.channel[0].item.length;i++){
                 var title = json.channel[0].item[i].title[0].Text;
@@ -33,13 +36,17 @@
                 html = html.concat('<li>'+description+'</li></ul>');
             }
  
-            $('div.container').html(html);
+            $('#'+divId+'').html(html);
         }
     });
+    }
+    
       </script> 
       
-        <div class="container"> 
+        <div id="top_news" class="container"> 
           
+        </div>
+        <div id="stockholm_news" class="container"> 
         </div> 
     
 

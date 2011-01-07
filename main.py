@@ -12,7 +12,7 @@ from google.appengine.ext.webapp import template
 
 sys.path.append('modules')
 
-from top import TopNewsHandler
+from news import NewsHandler
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
@@ -28,10 +28,10 @@ class MainHandler(webapp.RequestHandler):
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
     
-    topNewsHandler = TopNewsHandler()
+    newsHandler = NewsHandler()
 
     application = webapp.WSGIApplication([('/', MainHandler),
-                                          ('/top', TopNewsHandler),],
+                                          ('/news', NewsHandler),],
                                           debug=True)
     util.run_wsgi_app(application)
 
