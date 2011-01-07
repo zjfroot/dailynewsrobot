@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright Jifeng Zhang <zjfroot@gmail.com>.
+# Copyright 2010 Jifeng Zhang <zjfroot@gmail.com>.
 #
 #
 import os,sys
