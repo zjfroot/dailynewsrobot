@@ -34,9 +34,9 @@
                 var pubDate = json.channel[0].item[i].pubDate[0].Text;
                 
                 html = html.concat('<div class="news_element">');
-                html = html.concat('<p><a href="'+link+'" target="_blank">'+title+'</a></p>');
-                html = html.concat('<ul><li>'+pubDate+'</li>');
-                html = html.concat('<li>'+description+'</li></ul>');
+                html = html.concat('<div class="news_title"><a href="'+link+'" target="_blank">'+title+'</a></div>');
+                html = html.concat('<div class="news_date">Published at: '+pubDate+'</div>');
+                html = html.concat('<div class="news_content">'+description+'</div>');
                 html = html.concat('</div>');
             }
  

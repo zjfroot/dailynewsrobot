@@ -19,6 +19,22 @@ table#news td {
     border-bottom: 1px dashed #CFD2E8;
 }
 
+.news_title{
+    padding-top:10px;
+    font-size: 110%;
+}
+
+.news_date{
+    color: #767676;
+    font-size: 80%;
+}
+
+.news_content{
+    padding-top:10px;
+    font-size: 105%;
+    padding-bottom:10px;
+}
+
 .section_title{
     text-align: center; 
     background-color: #E9EAF5;
