@@ -13,5 +13,5 @@ class TopNewsHandler(webapp.RequestHandler):
     def get(self):
         fetcher = XmlFetcher("dn","top")
         xml = fetcher.get()
-        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.headers['Content-Type'] = 'text/xml'
         self.response.out.write(xml)

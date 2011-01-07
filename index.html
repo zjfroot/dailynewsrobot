@@ -3,15 +3,45 @@
         <title>Daily News Robot</title>
         <script type="text/javascript" src="http://www.google.com/jsapi">
         </script>
-        <!--disable zooming for mobile phone-->
-        <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
         <link type="text/css" rel="stylesheet" href="/css/style.css" />
 		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script> 
 		<script type="text/javascript" src="js/jqXMLUtils.js"></script>
     </head>
     <body>
+        <script type="text/javascript"> 
     
-        
+    //using jQuery ajax request
+    $.ajax({
+        type: "GET",
+        url: "top", 
+        dataType: "xml", //Make sure that you specify the type of file you expecting (XML)
+        complete: function(data) {
+            var json = $.xmlToJSON(data.responseXML);
+            //Now I want to get a value of the second node
+            //alert(json.channel[0].title[0].Text);
+            
+            var html = '<p>News from DN</p>';
+            
+            for(var i = 0;i<json.channel[0].item.length;i++){
+                var title = json.channel[0].item[i].title[0].Text;
+                var link = json.channel[0].item[i].link[0].Text;
+                var description = json.channel[0].item[i].description[0].Text;
+                var pubDate = json.channel[0].item[i].pubDate[0].Text;
+                
+                html = html.concat('<p><a href="'+link+'" target="_blank">'+title+'</a></p>');
+                html = html.concat('<ul><li>'+pubDate+'</li>');
+                html = html.concat('<li>'+description+'</li></ul>');
+            }
+ 
+            $('div.container').html(html);
+        }
+    });
+      </script> 
+      
+        <div class="container"> 
+          
+        </div> 
+    
 
     <!--{% for greeting in greetings %}
       {% if greeting.author %}
