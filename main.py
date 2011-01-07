@@ -22,7 +22,7 @@ class MainHandler(webapp.RequestHandler):
             'author':author,
             'action':action,
         }
-        path = os.path.join(os.path.dirname(__file__),'index.html')
+        path = os.path.join(os.path.dirname(__file__),'index_s.html')
         self.response.out.write(template.render(path,template_values))
 
 def main():
@@ -31,7 +31,8 @@ def main():
     newsHandler = NewsHandler()
 
     application = webapp.WSGIApplication([('/', MainHandler),
-                                          ('/news', NewsHandler),],
+                                          ('/news', NewsHandler),
+                                          ],
                                           debug=True)
     util.run_wsgi_app(application)
 

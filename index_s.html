@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <title>Daily News Robot</title>
+        <script type="text/javascript" src="http://www.google.com/jsapi">
+        </script>
+        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script> 
+		<script type="text/javascript" src="js/jqXMLUtils.js"></script>
+        <!--<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>-->
+        <link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
+        
+    </head>
+    <body>
+    <script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'sv',
+    includedLanguages: 'zh-CN,en',
+    multilanguagePage: true,
+    floatPosition: google.translate.TranslateElement.FloatPosition.TOP_LEFT
+  });
+}
+</script><script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <script type="text/javascript">
+    
+    display("/news?src=dn&sec=top","news_div");
+    //display("/news?src=dn&sec=stockholm","stockholm_news");
+    //display("/news?src=dn&sec=economy","economy_news");
+    //display("/news?src=dn&sec=sport","sport_news");
+    
+    
+        
+    function display(url, divId, title){
+    
+    //using jQuery ajax request
+    $.ajax({
+        type: "GET",
+        url: url, 
+        dataType: "xml", //Make sure that you specify the type of file you expecting (XML)
+        complete: function(data) {
+            var json = $.xmlToJSON(data.responseXML);
+            //Now I want to get a value of the second node
+            //alert(json.channel[0].title[0].Text);
+            
+            //clear the current news div
+            $('#'+divId+'').html('');
+            
+            var html = ''+$('#'+divId+'').html();
+            
+            for(var i = 0;i<json.channel[0].item.length;i++){
+                var title = json.channel[0].item[i].title[0].Text;
+                var link = json.channel[0].item[i].link[0].Text;
+                var description = json.channel[0].item[i].description[0].Text;
+                var pubDate = json.channel[0].item[i].pubDate[0].Text;
+                
+                html = html.concat('<div class="news_element">');
+                html = html.concat('<div class="news_title"><a href="'+link+'" target="_blank">'+title+'</a></div>');
+                html = html.concat('<div class="news_date">Published at: '+pubDate+'</div>');
+                html = html.concat('<div class="news_content">'+description+'</div>');
+                html = html.concat('</div>');
+            }
+ 
+            $('#'+divId+'').html(html);
+        }
+    });
+    }
+    
+    function toplist(){
+        display("/news?src=dn&sec=top","news_div");
+    }
+    
+    function stockholm(){
+        display("/news?src=dn&sec=stockholm","news_div");
+    }
+    
+    function economy(){
+        display("/news?src=dn&sec=economy","news_div");
+    }
+    
+    function sport(){
+        display("/news?src=dn&sec=sport","news_div");
+    }
+    
+      </script>
+      <div id="page_header"><h1>Daily News Robot</h1></div>
+      <table id="news" style="width:600px;margin-left:auto; margin-right:auto;">
+        <tr>
+            <td><div id="top_section_div" class="section_title"><a href="javascript:toplist();">Top news</a></div></td>
+            <td><div id="stockholm_section_div" class="section_title"><a href="javascript:stockholm();">Stockholm news</a></div></td>
+            <td><div id="economy_section_div" class="section_title"><a href="javascript:economy();">Economy news</a></div>  </td>
+            <td><div id="sport_section_div" class="section_title"><a href="javascript:sport();">Sport news</a></div> </td>
+        </tr>
+        <tr>
+            <td colspan="4"><div id="news_div" class="container"></div></td>
+        </tr>
+      </table>
+        
+        
+    
+
+    <!--{% for greeting in greetings %}
+      {% if greeting.author %}
+        <b>{{ greeting.author.nickname }}</b> wrote:
+      {% else %}
+       An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ greeting.content|escape }}</blockquote>
+    {% endfor %}
+
+    <form action="/sign" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Sign Guestbook"></div>
+    </form>
+
+    <a href="{{ url }}">{{ url_linktext }}</a>-->
+
+    
+    <div id="footer"> 
+    Created by {{author}}
+    Version: Dev - 8530fc4feb
+    <br />
+    App was built on: Fri Jan  7 16:17:10 CET 2011
+    </div>
+
+    
+  </body>
+</html>
