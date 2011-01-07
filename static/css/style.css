@@ -1,8 +1,12 @@
+h1,.section_title{
+    font-family: 'UnifrakturMaguntia','georgia',verdana, arial, sans-serif;
+}
+
 body {
     color: #000;
     font-size: 100%;
     /*font-family: 'Lucida Grande','georgia',verdana, arial, sans-serif;*/
-    font-family: 'georgia',verdana, arial, sans-serif;
+    font-family: 'Crimson Text','georgia',verdana, arial, sans-serif;
 }
 
 table#news td {
@@ -15,7 +19,12 @@ table#news td {
     font-size: 11px;
 }
 
+#page_header{
+    text-align:center;
+}
+
 .news_element{
+    padding-left:10px;
     border-bottom: 1px dashed #CFD2E8;
 }
 
@@ -38,9 +47,10 @@ table#news td {
 .section_title{
     text-align: center; 
     background-color: #E9EAF5;
+    border-bottom: 1px dashed #CFD2E8;
+    font-size: 120%;
 }
 .container{
-    font-family: 'georgia';
     border-left: 1px dashed #CFD2E8;
     border-right: 1px dashed #CFD2E8;
     border-top: 1px dashed #CFD2E8;
