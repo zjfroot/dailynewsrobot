@@ -10,6 +10,10 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
 
+sys.path.append('modules')
+
+from top import TopNewsHandler
+
 class MainHandler(webapp.RequestHandler):
     def get(self):
         author = 'Jifeng Zhang'
@@ -23,8 +27,11 @@ class MainHandler(webapp.RequestHandler):
 
 def main():
     logging.getLogger().setLevel(logging.DEBUG)
+    
+    topNewsHandler = TopNewsHandler()
 
-    application = webapp.WSGIApplication([('/', MainHandler),],
+    application = webapp.WSGIApplication([('/', MainHandler),
+                                          ('/top', TopNewsHandler),],
                                           debug=True)
     util.run_wsgi_app(application)
 
