@@ -16,7 +16,7 @@ class XmlFetcher:
         #generate the key that represent which news source to fetch.
         key = self.source + '_' +self.section
         
-        disableCache = True
+        disableCache = False
         if disableCache:
             return self.__download(key)
     
