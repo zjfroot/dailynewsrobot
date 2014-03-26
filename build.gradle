@@ -1,0 +1,33 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group:'org.jsoup', name : 'jsoup',version: '1.7.1'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+idea {
+    module {
+        jdkName = '1.7'
+        downloadJavadoc = true
+        downloadSources = true
+    }
+
+}
+
+version = new Version(major: 1, minor: 0, revision: 0)
+
+class Version {
+    int major, minor, revision
+    boolean release
+
+    String toString() {
+        "$major.$minor.$revision${release ? '' : '-SNAPSHOT'}"
+    }
+}
