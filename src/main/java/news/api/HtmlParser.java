@@ -13,5 +13,5 @@ import java.util.List;
 public interface HtmlParser {
     List<NewsSummary> getNewsSummaryList();
 
-    News getNewsDetail(NewsSummary newsSummary);
+    News getNewsDetail(String newsUrl, String title);
 }

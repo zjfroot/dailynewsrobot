@@ -13,4 +13,20 @@ public class News {
         this.title = title;
         this.html = html;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getHtml() {
+        return html;
+    }
 }

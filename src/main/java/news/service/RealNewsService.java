@@ -19,7 +19,7 @@ public class RealNewsService implements NewsService {
         List<News> news = new ArrayList<>();
 
         for(NewsSummary summary : htmlParser.getNewsSummaryList()){
-            news.add(htmlParser.getNewsDetail(summary));
+            //news.add(htmlParser.getNewsDetail(summary));
         }
 
         return news;
