@@ -2,6 +2,8 @@ package news.app;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.name.Names;
 import news.parser.HtmlParser;
 import news.parser.IdgHtmlParser;
 import news.service.NewsService;
@@ -16,10 +18,10 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         Injector injector = Guice.createInjector(new GuiceModule());
-        NewsService service = injector.getInstance(NewsService.class);
+        NewsService idgService = injector.getInstance(Key.get(NewsService.class, Names.named("IdgService")));
         while(true){
             try {
-                service.fetchLatestNews();
+                idgService.fetchLatestNews();
                 break;
             } catch (IOException e) {
                 e.printStackTrace();
