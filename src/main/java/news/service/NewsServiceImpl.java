@@ -1,25 +1,23 @@
 package news.service;
 
-import news.api.HtmlParser;
-import news.api.NewsService;
+import news.parser.HtmlParser;
 import news.model.News;
 import news.model.NewsSummary;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Jifeng Zhang on 3/26/14.
  */
-public class RealNewsService implements NewsService {
+public class NewsServiceImpl implements NewsService {
     @Override
-    public List<News> fetchLatestNews(HtmlParser htmlParser) {
+    public List<News> fetchLatestNews(HtmlParser htmlParser) throws IOException {
         List<News> news = new ArrayList<>();
 
         for(NewsSummary summary : htmlParser.getNewsSummaryList()){
-            //news.add(htmlParser.getNewsDetail(summary));
+            news.add(htmlParser.getNewsDetail(summary));
         }
 
         return news;

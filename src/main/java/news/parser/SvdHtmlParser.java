@@ -1,10 +1,9 @@
 package news.parser;
 
-import news.api.HtmlParser;
-import news.api.NewsService;
 import news.model.News;
 import news.model.NewsSummary;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ public class SvdHtmlParser implements HtmlParser {
     }
 
     @Override
-    public News getNewsDetail(String newsUrl, String title) {
+    public News getNewsDetail(NewsSummary summary) throws IOException {
         return null;
     }
 }

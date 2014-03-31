@@ -1,10 +1,8 @@
 package news.parser;
 
-import news.api.HtmlParser;
-import news.api.JsoupWrapper;
+import news.wrapper.JsoupWrapper;
 import news.model.News;
 import news.model.NewsSummary;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -24,25 +22,24 @@ public class IdgHtmlParser implements HtmlParser {
     }
 
     @Override
-    public List<NewsSummary> getNewsSummaryList() {
+    public List<NewsSummary> getNewsSummaryList() throws IOException {
         List<NewsSummary> newsSummaryList = new ArrayList<>();
 
         Document doc = wrapper.get("http://www.idg.se/2.1121");
         for (Element e : doc.getElementsByClass("newarticle")) {
-            Element newsElement = e.getElementsByTag("a").get(0);
+            Element newsElement = e.getElementsByTag("a").get(1);
             String newsTitle = newsElement.text();
             String newsUrl = "http://www.idg.se" + newsElement.attr("href");
             newsSummaryList.add(new NewsSummary(newsTitle, newsUrl));
         }
 
-
         return newsSummaryList;
     }
 
     @Override
-    public News getNewsDetail(String newUrl, String title) {
-        Document doc = wrapper.get(newUrl);
-        News news = new News(title, doc.select("div.articleBody").toString());
+    public News getNewsDetail(NewsSummary summary) throws IOException {
+        Document doc = wrapper.get(summary.getUrl());
+        News news = new News(summary.getTitle(), doc.select("div.articleBody").toString());
         return news;
     }
 }

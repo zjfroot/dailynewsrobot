@@ -1,6 +1,6 @@
 package news.wrapper;
 
-import news.api.JsoupWrapper;
+import news.exceptions.FailedToPerformJsoupGet;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -11,12 +11,9 @@ import java.io.IOException;
  */
 public class RealJsoupWrapper implements JsoupWrapper {
     @Override
-    public Document get(String url) {
-        try {
-            return Jsoup.connect(url).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public Document get(String url) throws IOException {
+
+        return Jsoup.connect(url).get();
+
     }
 }
