@@ -17,8 +17,8 @@ public class NewsServiceImplIntegrationTest {
     @Test
     public void fetchedLatestNewsIdgIsOK() throws IOException {
         HtmlParser parser = new IdgHtmlParser(new RealJsoupWrapper());
-        NewsService service = new NewsServiceImpl();
-        assertTrue(service.fetchLatestNews(parser).size() > 0);
+        NewsService service = new NewsServiceImpl(parser);
+        assertTrue(service.fetchLatestNews().size() > 0);
     }
 
 

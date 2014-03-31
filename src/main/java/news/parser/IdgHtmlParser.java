@@ -1,5 +1,6 @@
 package news.parser;
 
+import com.google.inject.Inject;
 import news.wrapper.JsoupWrapper;
 import news.model.News;
 import news.model.NewsSummary;
@@ -17,6 +18,7 @@ public class IdgHtmlParser implements HtmlParser {
 
     private JsoupWrapper wrapper;
 
+    @Inject
     public IdgHtmlParser(JsoupWrapper wrapper) {
         this.wrapper = wrapper;
     }
